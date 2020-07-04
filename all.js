@@ -64,9 +64,6 @@ const dummyData = {
       origin_price: 300,
       price: 200,
       unit: '單位',
-      options: {
-        comments: 'good',
-      },
     },
   ],
 };
@@ -76,6 +73,7 @@ const app = new Vue({
   data: {
     products: [],
     tempProduct: {
+      imageUrl: [],
       options: {
         comments: '',
       },
@@ -92,10 +90,15 @@ const app = new Vue({
     openModal(isNew, item) {
       $('#productModal').modal('show');
       if (isNew) {
-        this.tempProduct = {};
+        this.tempProduct = {
+          imageUrl: [],
+          options: {
+            comments: '',
+          },
+        };
         this.isNew = true;
       } else {
-        this.tempProduct = JSON.parse(JSON.stringify(item));
+        this.tempProduct = Object.assign({}, item);
         this.isNew = false;
       }
     },
@@ -131,6 +134,7 @@ const app = new Vue({
       }
       vm.tempProduct = {
         options: {
+          imageUrl: [],
           comments: '',
         },
       };
@@ -139,7 +143,7 @@ const app = new Vue({
     delModal(item) {
       const vm = this;
       $('#delProductModal').modal('show');
-      vm.tempProduct = JSON.parse(JSON.stringify(item));
+      vm.tempProduct = Object.assign({}, item);
     },
     delProduct() {
       const vm = this;
