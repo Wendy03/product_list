@@ -95,7 +95,7 @@ const app = new Vue({
         this.tempProduct = {};
         this.isNew = true;
       } else {
-        this.tempProduct = Object.assign({}, item);
+        this.tempProduct = JSON.parse(JSON.stringify(item));
         this.isNew = false;
       }
     },
@@ -129,13 +129,17 @@ const app = new Vue({
           padding: '2em',
         });
       }
-      vm.tempProduct = {};
+      vm.tempProduct = {
+        options: {
+          comments: '',
+        },
+      };
       $('#productModal').modal('hide');
     },
     delModal(item) {
       const vm = this;
       $('#delProductModal').modal('show');
-      vm.tempProduct = Object.assign({}, item);
+      vm.tempProduct = JSON.parse(JSON.stringify(item));
     },
     delProduct() {
       const vm = this;
