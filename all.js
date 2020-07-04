@@ -13,6 +13,9 @@ const dummyData = {
       origin_price: 300,
       price: 300,
       unit: '單位',
+      options: {
+        comments: 'good',
+      },
     },
     {
       id: 'xJeYeX1ATyxDL9IRkKZHzta0Fyj0v8dsPZrsIF2jjkGWQK1l9eREBrXSLHEGFxXZ',
@@ -27,6 +30,9 @@ const dummyData = {
       origin_price: 300,
       price: 200,
       unit: '單位',
+      options: {
+        comments: 'good',
+      },
     },
     {
       id: '8DfnOrNA9nUJtdzO0nJMGX7Qw5ePzUgj00blGDYXDF9k6AXQmLHVVb7ngRZKMl8Z',
@@ -41,6 +47,9 @@ const dummyData = {
       origin_price: 300,
       price: 200,
       unit: '單位',
+      options: {
+        comments: 'good',
+      },
     },
     {
       id: 'IzRdOQ5xEsCuCa511AUCkc1MCc7081MyJqzFT3oeG1Ges87VtTYJKOPqPi7wSDx9',
@@ -55,6 +64,9 @@ const dummyData = {
       origin_price: 300,
       price: 200,
       unit: '單位',
+      options: {
+        comments: 'good',
+      },
     },
   ],
 };
@@ -83,7 +95,7 @@ const app = new Vue({
         this.tempProduct = {};
         this.isNew = true;
       } else {
-        this.tempProduct = JSON.parse(JSON.stringify(item));
+        this.tempProduct = Object.assign({}, item);
         this.isNew = false;
       }
     },
@@ -123,7 +135,7 @@ const app = new Vue({
     delModal(item) {
       const vm = this;
       $('#delProductModal').modal('show');
-      vm.tempProduct = JSON.parse(JSON.stringify(item));
+      vm.tempProduct = Object.assign({}, item);
     },
     delProduct() {
       const vm = this;
