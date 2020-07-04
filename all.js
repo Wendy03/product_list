@@ -13,9 +13,6 @@ const dummyData = {
       origin_price: 300,
       price: 300,
       unit: '單位',
-      options: {
-        comments: 'good',
-      },
     },
     {
       id: 'xJeYeX1ATyxDL9IRkKZHzta0Fyj0v8dsPZrsIF2jjkGWQK1l9eREBrXSLHEGFxXZ',
@@ -30,9 +27,6 @@ const dummyData = {
       origin_price: 300,
       price: 200,
       unit: '單位',
-      options: {
-        comments: 'good',
-      },
     },
     {
       id: '8DfnOrNA9nUJtdzO0nJMGX7Qw5ePzUgj00blGDYXDF9k6AXQmLHVVb7ngRZKMl8Z',
@@ -47,9 +41,6 @@ const dummyData = {
       origin_price: 300,
       price: 200,
       unit: '單位',
-      options: {
-        comments: 'good',
-      },
     },
     {
       id: 'IzRdOQ5xEsCuCa511AUCkc1MCc7081MyJqzFT3oeG1Ges87VtTYJKOPqPi7wSDx9',
@@ -81,6 +72,10 @@ const app = new Vue({
   },
   created() {
     this.fetchProducts();
+    this.products.forEach((item, index) => {
+      const product = Object.assign({}, item);
+      product[index].options = { comments: '' };
+    });
   },
   methods: {
     fetchProducts() {
@@ -99,6 +94,7 @@ const app = new Vue({
         this.isNew = true;
       } else {
         this.tempProduct = Object.assign({}, item);
+        this.tempProduct.options = { comments: '' };
         this.isNew = false;
       }
     },
