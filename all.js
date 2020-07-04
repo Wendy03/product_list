@@ -112,7 +112,7 @@ const app = new Vue({
           text: '修改成功',
           icon: 'success',
           showConfirmButton: false,
-          timer: 2500,
+          timer: 1500,
           padding: '2em',
         });
       } else {
@@ -124,13 +124,13 @@ const app = new Vue({
           text: '新增成功',
           icon: 'success',
           showConfirmButton: false,
-          timer: 2500,
+          timer: 1500,
           padding: '2em',
         });
       }
       vm.tempProduct = {
+        imageUrl: [],
         options: {
-          imageUrl: [],
           comments: '',
         },
       };
@@ -148,8 +148,8 @@ const app = new Vue({
         if (product.id == id) {
           vm.products.splice(i, 1);
           vm.tempProduct = {
+            imageUrl: [],
             options: {
-              imageUrl: [],
               comments: '',
             },
           };
@@ -158,7 +158,7 @@ const app = new Vue({
             text: '刪除成功',
             icon: 'success',
             showConfirmButton: false,
-            timer: 2500,
+            timer: 1500,
             padding: '2em',
           });
         }
