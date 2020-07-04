@@ -138,7 +138,6 @@ const app = new Vue({
             icon: 'success',
             showConfirmButton: false,
             timer: 2500,
-            width: 200,
             padding: '2em',
           });
         }
