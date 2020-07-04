@@ -151,7 +151,12 @@ const app = new Vue({
       vm.products.forEach((product, i) => {
         if (product.id == id) {
           vm.products.splice(i, 1);
-          vm.tempProduct = {};
+          vm.tempProduct = {
+            options: {
+              imageUrl: [],
+              comments: '',
+            },
+          };
           Swal.fire({
             toast: true,
             text: '刪除成功',
