@@ -72,15 +72,15 @@ const app = new Vue({
   },
   created() {
     this.fetchProducts();
-    this.products.forEach((item, index) => {
-      const product = Object.assign({}, item);
-      product[index].options = { comments: '' };
-    });
   },
   methods: {
     fetchProducts() {
       const { products } = dummyData;
       this.products = products;
+      this.products.forEach((item, index) => {
+        const product = Object.assign({}, products);
+        product[index].options = { comments: '' };
+      });
     },
     openModal(isNew, item) {
       $('#productModal').modal('show');
@@ -94,7 +94,6 @@ const app = new Vue({
         this.isNew = true;
       } else {
         this.tempProduct = Object.assign({}, item);
-        this.tempProduct.options = { comments: '' };
         this.isNew = false;
       }
     },
@@ -140,6 +139,7 @@ const app = new Vue({
       const vm = this;
       $('#delProductModal').modal('show');
       vm.tempProduct = Object.assign({}, item);
+      vm.tempProduct.options = { comments: '' };
     },
     delProduct() {
       const vm = this;
@@ -147,21 +147,21 @@ const app = new Vue({
       vm.products.forEach((product, i) => {
         if (product.id == id) {
           vm.products.splice(i, 1);
-          vm.tempProduct = {
-            imageUrl: [],
-            options: {
-              comments: '',
-            },
-          };
-          Swal.fire({
-            toast: true,
-            text: '刪除成功',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 1500,
-            padding: '2em',
-          });
         }
+        vm.tempProduct = {
+          imageUrl: [],
+          options: {
+            comments: '',
+          },
+        };
+        Swal.fire({
+          toast: true,
+          text: '刪除成功',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500,
+          padding: '2em',
+        });
       });
       $('#delProductModal').modal('hide');
     },
