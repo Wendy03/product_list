@@ -79,6 +79,7 @@ const app = new Vue({
       this.products = products;
       this.products.forEach((item, index) => {
         const product = Object.assign({}, products);
+        console.log(product);
         product[index].options = { comments: '' };
       });
     },
@@ -93,7 +94,7 @@ const app = new Vue({
         };
         this.isNew = true;
       } else {
-        this.tempProduct = Object.assign({}, item);
+        this.tempProduct = JSON.parse(JSON.stringify(item));
         this.isNew = false;
       }
     },
@@ -138,7 +139,7 @@ const app = new Vue({
     delModal(item) {
       const vm = this;
       $('#delProductModal').modal('show');
-      vm.tempProduct = Object.assign({}, item);
+      vm.tempProduct = JSON.parse(JSON.stringify(item));
       vm.tempProduct.options = { comments: '' };
     },
     delProduct() {
